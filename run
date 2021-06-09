@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+// ==========================================
+// Scripting configurations
+// ==========================================
+const caporal = require('@caporal/core').program;
+
+// Here, you could add custom global options, or tweak
+// the Caporal instance, if required.
+
+// Then it is run:
+require(`${__dirname}/node_modules/@villemontreal/core-utils-scripting-core-nodejs-lib/dist/src/run`).run({
+  caporal,
+  projectRoot: __dirname,
+  scriptsIndexModule: './scripts/index',
+  // Not used, the "test-units" script is overriden:
+  testsLocations: [],
+  // Forces the compilation of overriden core scripts:
+  overridenCoreScripts: [
+    'prettier',
+    'prettier-fix',
+    'tslint',
+    'tslint-fix',
+    'lint',
+    'lint-fix',
+    'test',
+    'test-units',
+    'show-coverage'
+  ]
+});

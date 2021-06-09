@@ -1,0 +1,10 @@
+.*
+Jenkinsfile
+*.map
+node_modules
+/test
+/temp
+/src/**/*.js
+/dist
+package.json
+package-lock.json
