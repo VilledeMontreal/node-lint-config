@@ -13,7 +13,7 @@ The configured rules strive to be as close as possible to the [Airbnb JavaScript
 Add the current project to your project's dev dependency.
 
 ```sh
-npm install -D @villemontreal/lint-config-villemontreal
+npm install -D @villedemontreal/lint-config
 ```
 
 If you use VS Code, you should install the following extensions in order to see the rules and simplify the formatting of your files:
@@ -29,21 +29,21 @@ In `$project-root/tslint.json`:
 
 ```json
 {
-  "extends": "@villemontreal/lint-config-villemontreal/rules/tslint-angular"
+  "extends": "@villedemontreal/lint-config/rules/tslint-angular"
 }
 ```
 
 In `$project-root/prettier.config.js`:
 
 ```js
-module.exports = require('@villemontreal/lint-config-villemontreal/rules/prettier.config');
+module.exports = require('@villedemontreal/lint-config/rules/prettier.config');
 ```
 
 In `$project-root/tsconfig.json` (Note that you can add extra options, when required):
 
 ```json
 {
-  "extends": "./node_modules/@villemontreal/lint-config-villemontreal/rules/tsconfig-base.json",
+  "extends": "./node_modules/@villedemontreal/lint-config/rules/tsconfig-base.json",
   "compilerOptions": {
     "sourceMap": true,
     "pretty": true,
@@ -61,21 +61,21 @@ In `$project-root/tslint.json`:
 
 ```json
 {
-  "extends": "@villemontreal/lint-config-villemontreal/rules/tslint-node"
+  "extends": "@villedemontreal/lint-config/rules/tslint-node"
 }
 ```
 
 In `$project-root/prettier.config.js`:
 
 ```js
-module.exports = require('@villemontreal/lint-config-villemontreal/rules/prettier.config');
+module.exports = require('@villedemontreal/lint-config/rules/prettier.config');
 ```
 
 In `$project-root/tsconfig.json` (Note that you can add extra options, if required!):
 
 ```json
 {
-  "extends": "./node_modules/@villemontreal/lint-config-villemontreal/rules/tsconfig-base.json",
+  "extends": "./node_modules/@villedemontreal/lint-config/rules/tsconfig-base.json",
   "compilerOptions": {
     "sourceMap": true,
     "pretty": true,
@@ -87,7 +87,7 @@ In `$project-root/tsconfig.json` (Note that you can add extra options, if requir
 
 ## The Check/Fix script
 
-When the `@villemontreal/lint-config-villemontreal` dependency is installed in your project, you gain
+When the `@villedemontreal/lint-config` dependency is installed in your project, you gain
 access to a script that can validate and fix linting. This script will be available
 at `$project-root/node_modules/.bin/villemontreal-lint`.
 
@@ -144,7 +144,7 @@ windows: node_modules\.bin\villemontreal-lint C:\someDir\myNodeProject fix node 
 
 ## The Check/Fix functions
 
-The "`@villemontreal/lint-config-villemontreal`" dependency also exports functions that can be used to check and fix a project
+The "`@villedemontreal/lint-config`" dependency also exports functions that can be used to check and fix a project
 programatically :
 
 - `prettierCheck(...)`
@@ -252,16 +252,6 @@ de la librairie présente! C'est pour cette raison que tous les scripts core rel
 librairie de scripting sont remplacés ici! D'hériter de la classe `ScriptBase` est sans problème car cet import
 ne génère aucune dépendance circulaire.
 
-# Test et publication de la librairie sur Nexus
-
-En mergant une pull request dans la branche `develop`, un artifact "`-pre.build`" sera créé automatiquement dans Nexus. Vous
-pouvez utiliser cette version temporaire de la librairie pour bien la tester dans un réel projet.
-
-Une fois mergée dans `master`, la librairie est définitiement publiée dans Nexus, en utilisant la version spécifiée dans
-le `package.json`.
-
 # Aide / Contributions
-
-Pour obtenir de l'aide avec cette librairie, vous pouvez poster sur la salle Google Chat [dev-discussions](https://chat.google.com/room/AAAASmiQveI).
 
 Notez que les contributions sous forme de pull requests sont bienvenues.
