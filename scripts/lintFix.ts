@@ -1,4 +1,4 @@
-import { ScriptBase } from '@villemontreal/core-utils-scripting-core-nodejs-lib';
+import { ScriptBase } from '@villedemontreal/scripting';
 import { PrettierFixScript } from './prettierFix';
 import { TsLintFixScript } from './tsLintFix';
 

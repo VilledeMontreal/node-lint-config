@@ -1,5 +1,5 @@
 import { Command } from '@caporal/core';
-import { ScriptBase } from '@villemontreal/core-utils-scripting-core-nodejs-lib';
+import { ScriptBase } from '@villedemontreal/scripting';
 
 export class ShowCoverageScript extends ScriptBase {
   get name(): string {
