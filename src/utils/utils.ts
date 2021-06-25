@@ -124,5 +124,5 @@ function isLintLibItself() {
   }
 
   const packageJsonObj = require(packageJsonPath);
-  return packageJsonObj.name === '@villemontreal/lint-config-villemontreal';
+  return packageJsonObj.name === '@villedemontreal/lint-config';
 }
