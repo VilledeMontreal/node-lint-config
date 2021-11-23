@@ -1,21 +1,21 @@
 import { ScriptBase } from '@villedemontreal/scripting';
-import { ProjectType, tslintFix } from '../src';
+import { ProjectType, eslintFix } from '../src';
 import { libRoot } from '../src/utils/utils';
 
-export class TsLintFixScript extends ScriptBase {
+export class EsLintFixScript extends ScriptBase {
   get name(): string {
-    return 'tslint-fix';
+    return 'eslint-fix';
   }
 
   get description(): string {
     return (
-      `Fix the project formating using the TSLint rules. ` +
+      `Fix the project formating using the ESLint rules. ` +
       `Note that some errors may not be fixable automatically and may` +
       `need manual help.`
     );
   }
 
   protected async main() {
-    await tslintFix(libRoot, ProjectType.NODE);
+    await eslintFix(libRoot, ProjectType.NODE);
   }
 }

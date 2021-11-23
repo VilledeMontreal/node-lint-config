@@ -1,3 +1,3 @@
 export { prettierCheck, prettierFix } from './prettier';
-export { tslintCheck, tslintFix } from './tslint';
+export { eslintCheck, eslintFix } from './eslint';
 export * from './models';

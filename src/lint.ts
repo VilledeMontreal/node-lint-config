@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // Console outputs are OK for a script.
 /* tslint:disable:no-console */
 import * as fs from 'fs';
@@ -8,15 +9,16 @@ import {
   getProjectTypeFromString,
   getValidationTypeFromString,
   ProjectType,
-  ValidationType
+  ValidationType,
 } from './models';
 import { prettierCheck, prettierFix } from './prettier';
-import { tslintCheck, tslintFix } from './tslint';
+import { eslintCheck, eslintFix } from './eslint';
 import { detectProjetType } from './utils/utils';
 
 /**
  * Help message
  */
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
 const help = (message: string = '') => {
   console.log(`\n`);
   if (message) {
@@ -116,6 +118,7 @@ const getValidationType = (args: string[]): ValidationType => {
 /**
  * Lint script
  */
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 (async () => {
   try {
     // ==========================================
@@ -147,14 +150,14 @@ const getValidationType = (args: string[]): ValidationType => {
     // ==========================================
     // TSLint
     // ==========================================
-    if (validationType === ValidationType.TSLINT || validationType === ValidationType.BOTH) {
+    if (validationType === ValidationType.ESLINT || validationType === ValidationType.BOTH) {
       if (action === Action.FIX) {
         console.log(`TSLint fix, project root : ${projectRoot}`);
-        await tslintFix(projectRoot, projectType);
+        await eslintFix(projectRoot, projectType);
         console.log(`TSLint fix done.`);
       } else if (action === Action.CHECK) {
         console.log(`TSLint check, project root : ${projectRoot}`);
-        await tslintCheck(projectRoot, projectType);
+        await eslintCheck(projectRoot, projectType);
         console.log(`TSLint check passed.`);
       } else {
         throw new Error(`Unamanaged action "${action}"`);

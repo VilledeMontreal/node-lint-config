@@ -1,0 +1,10 @@
+{
+  "extends": ["../../rules/eslint-node.json"],
+  "overrides": [
+    {
+      "parserOptions": {
+        "project": ["tsconfig.json"]
+      }
+    }
+  ]
+}

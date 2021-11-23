@@ -14,18 +14,14 @@ export class TestUnitsScript extends ScriptBase {
     await this.invokeShellCommand(`node`, [`${libRoot}/dist/src/lint.check-test.js`]);
     await this.invokeShellCommand(`node`, [`${libRoot}/dist/src/lint.fix-test.js`]);
     await this.invokeShellCommand(`node`, [
-      `${libRoot}/node_modules/tslint/bin/tslint`,
+      `${libRoot}/node_modules/eslint/bin/eslint`,
       `--config`,
-      `${libRoot}/rules/tslint-angular.json`,
-      `--project`,
-      `${libRoot}/test/angular/tsconfig.json`
+      `${libRoot}/test/angular/eslint-angular.json`,
     ]);
     await this.invokeShellCommand(`node`, [
-      `${libRoot}/node_modules/tslint/bin/tslint`,
+      `${libRoot}/node_modules/eslint/bin/eslint`,
       `--config`,
-      `${libRoot}/rules/tslint-node.json`,
-      `--project`,
-      `${libRoot}/test/node/tsconfig.json`
+      `${libRoot}/test/node/eslint-node.json`,
     ]);
   }
 }

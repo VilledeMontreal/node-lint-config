@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable no-console */
 // ==========================================
 // Disabling some linting rules is OK in test files.
-// tslint:disable:max-func-body-length
-// tslint:disable: no-console
 // ==========================================
 
 import * as fs from 'fs-extra';
@@ -22,7 +22,7 @@ const nothingToFixTest = async () => {
       testRoot,
       Action.FIX,
       ProjectType.NODE,
-      ValidationType.BOTH
+      ValidationType.BOTH,
     ]);
   } catch (err) {
     throw new Error(`\ntest failed!\n${err}\n`);
@@ -55,7 +55,7 @@ const fixPrettierAndTsLint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER
+        ValidationType.PRETTIER,
       ]);
     } catch (err) {
       error = true;
@@ -65,7 +65,7 @@ const fixPrettierAndTsLint = async () => {
     }
 
     // ==========================================
-    // TSLint check must fail
+    // ESLint check must fail
     // ==========================================
     error = false;
     try {
@@ -74,7 +74,7 @@ const fixPrettierAndTsLint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.TSLINT
+        ValidationType.ESLINT,
       ]);
     } catch (err) {
       error = true;
@@ -84,7 +84,7 @@ const fixPrettierAndTsLint = async () => {
     }
 
     // ==========================================
-    // Fix Prettier and TSLint!
+    // Fix Prettier and ESLint!
     // ==========================================
     try {
       await execPromisified(`node`, [
@@ -92,7 +92,7 @@ const fixPrettierAndTsLint = async () => {
         tempDir,
         Action.FIX,
         ProjectType.NODE,
-        ValidationType.BOTH
+        ValidationType.BOTH,
       ]);
     } catch (err) {
       throw new Error(`\ntest failed!\n${err}\n`);
@@ -107,14 +107,14 @@ const fixPrettierAndTsLint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER
+        ValidationType.PRETTIER,
       ]);
     } catch (err) {
       throw new Error(`Prettier check must have succeed after the fix!`);
     }
 
     // ==========================================
-    // TSLint check must succeed
+    // ESLint check must succeed
     // ==========================================
     try {
       await execPromisified(`node`, [
@@ -122,10 +122,10 @@ const fixPrettierAndTsLint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.TSLINT
+        ValidationType.ESLINT,
       ]);
     } catch (err) {
-      throw new Error(`TSLint check must have succeed after the fix!`);
+      throw new Error(`ESLint check must have succeed after the fix!`);
     }
   } finally {
     try {
@@ -157,7 +157,7 @@ const fixPrettier = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER
+        ValidationType.PRETTIER,
       ]);
     } catch (err) {
       error = true;
@@ -167,7 +167,7 @@ const fixPrettier = async () => {
     }
 
     // ==========================================
-    // TSLint check must fail
+    // ESLint check must fail
     // ==========================================
     error = false;
     try {
@@ -176,7 +176,7 @@ const fixPrettier = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.TSLINT
+        ValidationType.ESLINT,
       ]);
     } catch (err) {
       error = true;
@@ -194,7 +194,7 @@ const fixPrettier = async () => {
         tempDir,
         Action.FIX,
         ProjectType.NODE,
-        ValidationType.PRETTIER
+        ValidationType.PRETTIER,
       ]);
     } catch (err) {
       throw new Error(`\ntest failed!\n${err}\n`);
@@ -209,14 +209,14 @@ const fixPrettier = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER
+        ValidationType.PRETTIER,
       ]);
     } catch (err) {
       throw new Error(`Prettier check must have succeed after the fix!`);
     }
 
     // ==========================================
-    // TSLint check must still fail
+    // ESLint check must still fail
     // ==========================================
     error = false;
     try {
@@ -225,13 +225,13 @@ const fixPrettier = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.TSLINT
+        ValidationType.ESLINT,
       ]);
     } catch (err) {
       error = true;
     }
     if (!error) {
-      throw new Error(`TSLint check must have still failed!`);
+      throw new Error(`ESLint check must have still failed!`);
     }
   } finally {
     try {
@@ -243,7 +243,7 @@ const fixPrettier = async () => {
 };
 
 /**
- * Fix TSLint test
+ * Fix ESLint test
  */
 const fixTslint = async () => {
   const testRoot = `${libRoot}/test/resources/lint/fix/fix-tslint`;
@@ -263,7 +263,7 @@ const fixTslint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER
+        ValidationType.PRETTIER,
       ]);
     } catch (err) {
       error = true;
@@ -273,7 +273,7 @@ const fixTslint = async () => {
     }
 
     // ==========================================
-    // TSLint check must fail
+    // ESLint check must fail
     // ==========================================
     error = false;
     try {
@@ -282,7 +282,7 @@ const fixTslint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.TSLINT
+        ValidationType.ESLINT,
       ]);
     } catch (err) {
       error = true;
@@ -292,7 +292,7 @@ const fixTslint = async () => {
     }
 
     // ==========================================
-    // Fix TSLint!
+    // Fix ESLint!
     // ==========================================
     try {
       await execPromisified(`node`, [
@@ -300,7 +300,7 @@ const fixTslint = async () => {
         tempDir,
         Action.FIX,
         ProjectType.NODE,
-        ValidationType.TSLINT
+        ValidationType.ESLINT,
       ]);
     } catch (err) {
       throw new Error(`\ntest failed!\n${err}\n`);
@@ -316,7 +316,7 @@ const fixTslint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER
+        ValidationType.PRETTIER,
       ]);
     } catch (err) {
       error = true;
@@ -326,7 +326,7 @@ const fixTslint = async () => {
     }
 
     // ==========================================
-    // TSLint check must succeed
+    // ESLint check must succeed
     // ==========================================
     try {
       await execPromisified(`node`, [
@@ -334,10 +334,10 @@ const fixTslint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.TSLINT
+        ValidationType.ESLINT,
       ]);
     } catch (err) {
-      throw new Error(`TSLint check must have succeed after the fix!`);
+      throw new Error(`ESLint check must have succeed after the fix!`);
     }
   } finally {
     try {
@@ -372,7 +372,7 @@ const fixTslint = async () => {
     await fixPrettier();
 
     // ==========================================
-    // Fix TSLint
+    // Fix ESLint
     // ==========================================
     await fixTslint();
 

@@ -56,6 +56,7 @@ export const getPackageRoot = (packageName: string): string => {
  */
 export const execPromisified = (command: string, args: string[]): Promise<void> => {
   return new Promise<void>((resolve, reject) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const proc = execFile(command, args, { maxBuffer: 1024 * 500 }, (err: any, out: any, code: any) => {
       if (err) {
         reject(err);
@@ -69,7 +70,7 @@ export const execPromisified = (command: string, args: string[]): Promise<void> 
       if (dataClean && dataClean.endsWith('\n')) {
         dataClean = dataClean.substring(0, dataClean.length - 1);
       }
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log(dataClean);
     });
 
@@ -78,7 +79,7 @@ export const execPromisified = (command: string, args: string[]): Promise<void> 
       if (dataClean && dataClean.endsWith('\n')) {
         dataClean = dataClean.substr(0, dataClean.length - 1);
       }
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.error(dataClean);
     });
   });
