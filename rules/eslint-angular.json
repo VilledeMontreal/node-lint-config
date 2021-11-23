@@ -6,25 +6,11 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["tsconfig.json", "e2e/tsconfig.json"],
+        "project": ["tsconfig.json"],
         "createDefaultProgram": true
       },
-      "extends": [
-        "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "eslint:recommended",
-        "prettier",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
-      ],
+      "extends": ["eslint:recommended"],
       "rules": {
-        "@angular-eslint/component-selector": [
-          "error",
-          { "prefix": ["app", "test", "vdm"], "style": "kebab-case", "type": "element" }
-        ],
-        "@angular-eslint/component-class-suffix": "error",
-        "@angular-eslint/directive-selector": ["error", { "prefix": "app", "style": "camelCase", "type": "attribute" }],
-        "@angular-eslint/directive-class-suffix": "error",
         "default-param-last": "error",
         "no-useless-backreference": "error",
         "no-useless-rename": ["error", { "ignoreImport": true, "ignoreExport": true, "ignoreDestructuring": true }],
@@ -71,11 +57,6 @@
         "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
         "@typescript-eslint/await-thenable": "off"
       }
-    },
-    {
-      "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended", "eslint:recommended"],
-      "rules": {}
     }
   ]
 }

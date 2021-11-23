@@ -1,6 +1,0 @@
-{
-  "compilerOptions": {
-    "module": "commonjs"
-  },
-  "include": ["./good.ts", "../base/good.ts"]
-}
