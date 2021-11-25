@@ -125,12 +125,15 @@ export const eslint = async (
         `${getEslintRoot()}/bin/eslint`,
         `--config`,
         `${libRoot}/rules/eslint-${projectType}.json`,
+        `--ext`,
+        `.ts`,
       ];
 
       if (action === Action.FIX) {
         args.push('--fix');
       }
-
+      // eslint-disable-next-line no-console
+      console.log(`ARGS ====> `, args);
       await execPromisified(`node`, args);
     } catch (err) {
       if (action === Action.FIX) {

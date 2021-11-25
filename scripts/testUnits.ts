@@ -16,12 +16,12 @@ export class TestUnitsScript extends ScriptBase {
     await this.invokeShellCommand(`node`, [
       `${libRoot}/node_modules/eslint/bin/eslint`,
       `--config`,
-      `${libRoot}/test/angular/eslint-angular.json`,
+      `${libRoot}/rules/eslint-angular.json`,
     ]);
     await this.invokeShellCommand(`node`, [
       `${libRoot}/node_modules/eslint/bin/eslint`,
       `--config`,
-      `${libRoot}/test/node/eslint-node.json`,
+      `${libRoot}/rules/eslint-node.json`,
     ]);
   }
 }

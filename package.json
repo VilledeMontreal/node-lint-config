@@ -28,7 +28,8 @@
     "prettier": "node run prettier",
     "prettier-fix": "node run prettier-fix",
     "watch": "node run watch",
-    "prepublishOnly": ""
+    "prepublishOnly": "",
+    "lint-test": "eslint -c rules/eslint-angular.json --ext .ts ./test/resources/lint/check/angular/tslint/bad/simple"
   },
   "dependencies": {
     "@types/app-root-path": "1.2.4",

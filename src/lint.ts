@@ -148,7 +148,7 @@ const getValidationType = (args: string[]): ValidationType => {
     }
 
     // ==========================================
-    // TSLint
+    // ESLint
     // ==========================================
     if (validationType === ValidationType.ESLINT || validationType === ValidationType.BOTH) {
       if (action === Action.FIX) {
