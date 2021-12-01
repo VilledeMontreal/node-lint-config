@@ -1,3 +1,4 @@
+import { globalConstants } from '@villedemontreal/general-utils';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { Action, ProjectType } from './models';
@@ -99,7 +100,7 @@ export const eslint = async (
   // If no tsconfig.json is specified, we take the
   // target project's one.
   // ==========================================
-  if (!tsConfigPathClean) {
+  if (!tsConfigPathClean && !globalConstants.testingMode) {
     tsConfigPathClean = `${projectRootClean}/tsconfig.json`;
     if (!fs.existsSync(tsConfigPathClean)) {
       throw new Error(`A "tsconfig.json" is required at the root of the projet : ${tsConfigPathClean}`);
@@ -124,7 +125,7 @@ export const eslint = async (
       const args: string[] = [
         `${getEslintRoot()}/bin/eslint`,
         `--config`,
-        `${libRoot}/rules/eslint-${projectType}.json`,
+        `${libRoot}${globalConstants.testingMode ? '/test/base' : '/rules'}/eslint-${projectType}.json`,
         `--ext`,
         `.ts`,
       ];
@@ -132,6 +133,8 @@ export const eslint = async (
       if (action === Action.FIX) {
         args.push('--fix');
       }
+      // eslint-disable-next-line no-console
+      console.log('ARGS ====> ', args);
       await execPromisified(`node`, args);
     } catch (err) {
       if (action === Action.FIX) {

@@ -152,13 +152,13 @@ const getValidationType = (args: string[]): ValidationType => {
     // ==========================================
     if (validationType === ValidationType.ESLINT || validationType === ValidationType.BOTH) {
       if (action === Action.FIX) {
-        console.log(`TSLint fix, project root : ${projectRoot}`);
+        console.log(`ESLint fix, project root : ${projectRoot}`);
         await eslintFix(projectRoot, projectType);
-        console.log(`TSLint fix done.`);
+        console.log(`ESLint fix done.`);
       } else if (action === Action.CHECK) {
-        console.log(`TSLint check, project root : ${projectRoot}`);
+        console.log(`ESLint check, project root : ${projectRoot}`);
         await eslintCheck(projectRoot, projectType);
-        console.log(`TSLint check passed.`);
+        console.log(`ESLint check passed.`);
       } else {
         throw new Error(`Unamanaged action "${action}"`);
       }
