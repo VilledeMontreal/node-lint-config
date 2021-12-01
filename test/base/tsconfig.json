@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "lib": ["es2019", "es2020"],
+    "module": "commonjs",
+    "newLine": "LF",
+    "charset": "utf8",
+    "suppressImplicitAnyIndexErrors": true,
+    "alwaysStrict": true
+  },
+  "include": ["../../test/**/*.ts"]
+}

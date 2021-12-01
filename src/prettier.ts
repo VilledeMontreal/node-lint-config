@@ -1,3 +1,4 @@
+import { globalConstants } from '@villedemontreal/general-utils';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { Action } from './models';
@@ -46,6 +47,9 @@ const prettier = async (action: Action, projectRoot: string, prettierIgnoreFileP
         `No .prettierignore file found in the project to lint ("${prettierIgnoreFilePathClean}")... Using the default one.`
       );
       prettierIgnoreFilePathClean = `${libRoot}/src/utils/.prettierignore-default`;
+      if (globalConstants.testingMode) {
+        prettierIgnoreFilePathClean = `${libRoot}/test/base/.prettierignore-tests`;
+      }
     }
   }
 

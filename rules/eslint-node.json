@@ -1,3 +1,6 @@
 {
-  "extends": ["./eslint-base.json"]
+  "extends": ["./eslint-base.json"],
+  "rules": {
+    "@typescript-eslint/member-ordering": "error"
+  }
 }

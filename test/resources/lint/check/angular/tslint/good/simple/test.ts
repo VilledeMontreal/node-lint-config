@@ -6,7 +6,7 @@ test = test + test;
 
 const someConst = 123;
 if (someConst === 123) {
-    let stromgol = 42; // prettier error
+  let stromgol = 42; // prettier error
   if (stromgol) {
     stromgol += someConst;
   }

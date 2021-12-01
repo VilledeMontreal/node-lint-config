@@ -10,7 +10,8 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
   },
   "plugins": ["eslint-plugin-jsdoc", "eslint-plugin-prefer-arrow", "@typescript-eslint", "prettier"],
   "rules": {
@@ -29,15 +30,14 @@
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-var-requires": "off",
-
     "@typescript-eslint/no-unsafe-return": "warn",
     "@typescript-eslint/no-unnecessary-type-assertion": "warn",
     "@typescript-eslint/unbound-method": "warn",
     "@typescript-eslint/await-thenable": "warn",
     "@typescript-eslint/no-inferrable-types": "warn",
     "@typescript-eslint/require-await": "warn",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "prefer-const": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
+    "prefer-const": "error",
     "@typescript-eslint/no-floating-promises": "warn",
     "@typescript-eslint/no-misused-promises": "warn",
     "@typescript-eslint/no-empty-interface": "warn",

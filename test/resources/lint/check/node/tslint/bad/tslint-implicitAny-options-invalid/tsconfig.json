@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "target": "es2015",
-    "module": "commonjs",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": false,
-    "noUnusedLocals": true
-  }
-}

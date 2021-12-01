@@ -132,8 +132,6 @@ export const eslint = async (
       if (action === Action.FIX) {
         args.push('--fix');
       }
-      // eslint-disable-next-line no-console
-      console.log(`ARGS ====> `, args);
       await execPromisified(`node`, args);
     } catch (err) {
       if (action === Action.FIX) {
