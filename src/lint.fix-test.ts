@@ -41,13 +41,13 @@ const fixPrettierAndTsLint = async () => {
   const testRoot = `${libRoot}/test/resources/lint/fix/fix-both`;
 
   const tempDir = `${getTempDirPath()}/${uuid()}`;
+  console.log(`
+  ==========================================
+  Prettier check must fail: ${testRoot}
+  ==========================================`);
   fs.mkdirsSync(tempDir);
   try {
     fs.copySync(testRoot, tempDir);
-
-    // ==========================================
-    // Prettier check must fail
-    // ==========================================
     let error = false;
     try {
       await execPromisified(`node`, [
@@ -63,10 +63,10 @@ const fixPrettierAndTsLint = async () => {
     if (!error) {
       throw new Error(`Prettier check must have failed!`);
     }
-
-    // ==========================================
-    // ESLint check must fail
-    // ==========================================
+    console.log(`
+    ==========================================
+    ESLint check must fail: ${testRoot}
+    ==========================================`);
     error = false;
     try {
       await execPromisified(`node`, [
@@ -82,10 +82,10 @@ const fixPrettierAndTsLint = async () => {
     if (!error) {
       throw new Error(`Prettier check must have failed!`);
     }
-
-    // ==========================================
-    // Fix Prettier and ESLint!
-    // ==========================================
+    console.log(`
+    ==========================================
+    Fix Prettier and ESLint!: ${testRoot}
+    ==========================================`);
     try {
       await execPromisified(`node`, [
         `${libRoot}/dist/src/lint.js`,
@@ -97,10 +97,10 @@ const fixPrettierAndTsLint = async () => {
     } catch (err) {
       throw new Error(`\ntest failed!\n${err}\n`);
     }
-
-    // ==========================================
-    // Prettier check must succeed
-    // ==========================================
+    console.log(`
+    ==========================================
+    Prettier check must succeed: ${testRoot}
+    ==========================================`);
     try {
       await execPromisified(`node`, [
         `${libRoot}/dist/src/lint.js`,
@@ -112,10 +112,11 @@ const fixPrettierAndTsLint = async () => {
     } catch (err) {
       throw new Error(`Prettier check must have succeed after the fix!`);
     }
-
-    // ==========================================
-    // ESLint check must succeed
-    // ==========================================
+    console.log(`
+    ==========================================
+    ESLint check must succeed: ${testRoot}
+    ==========================================
+    `);
     try {
       await execPromisified(`node`, [
         `${libRoot}/dist/src/lint.js`,
@@ -251,11 +252,12 @@ const fixTslint = async () => {
   const tempDir = `${getTempDirPath()}/${uuid()}`;
   fs.mkdirsSync(tempDir);
   try {
+    console.log(`
+    ==========================================
+    Prettier check must fail: ${testRoot}
+    ==========================================`);
     fs.copySync(testRoot, tempDir);
 
-    // ==========================================
-    // Prettier check must fail
-    // ==========================================
     let error = false;
     try {
       await execPromisified(`node`, [
@@ -272,9 +274,11 @@ const fixTslint = async () => {
       throw new Error(`Prettier check must have failed!`);
     }
 
-    // ==========================================
-    // ESLint check must fail
-    // ==========================================
+    console.log(`
+    ==========================================
+    ESLint check must fail: ${testRoot}
+    ==========================================`);
+
     error = false;
     try {
       await execPromisified(`node`, [
@@ -290,10 +294,10 @@ const fixTslint = async () => {
     if (!error) {
       throw new Error(`Prettier check must have failed!`);
     }
-
-    // ==========================================
-    // Fix ESLint!
-    // ==========================================
+    console.log(`
+    ==========================================
+    Fix ESLint: ${testRoot}
+    ==========================================`);
     try {
       await execPromisified(`node`, [
         `${libRoot}/dist/src/lint.js`,
@@ -305,10 +309,10 @@ const fixTslint = async () => {
     } catch (err) {
       throw new Error(`\ntest failed!\n${err}\n`);
     }
-
-    // ==========================================
-    // Prettier check must still fail
-    // ==========================================
+    console.log(`
+    ==========================================
+    Prettier check must still fail: ${testRoot}
+    ==========================================`);
     error = false;
     try {
       await execPromisified(`node`, [
@@ -324,10 +328,10 @@ const fixTslint = async () => {
     if (!error) {
       throw new Error(`Prettier check must have still failed!`);
     }
-
-    // ==========================================
-    // ESLint check must succeed
-    // ==========================================
+    console.log(`
+    ==========================================
+    ESLint check must succeed: ${testRoot}
+    ==========================================`);
     try {
       await execPromisified(`node`, [
         `${libRoot}/dist/src/lint.js`,
