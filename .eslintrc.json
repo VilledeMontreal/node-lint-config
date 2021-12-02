@@ -1,3 +1,0 @@
-{
-  "extends": ["./rules/eslint-base.json"]
-}

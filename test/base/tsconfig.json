@@ -8,5 +8,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "alwaysStrict": true
   },
-  "include": ["../../test/**/*.ts"]
+  "include": ["../resources/lint/**/*.ts"]
 }
