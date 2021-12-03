@@ -1,4 +1,3 @@
-import { globalConstants } from '@villedemontreal/general-utils';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { Action, ProjectType } from './models';
@@ -100,7 +99,7 @@ export const eslint = async (
   // If no tsconfig.json is specified, we take the
   // target project's one.
   // ==========================================
-  if (!tsConfigPathClean && !globalConstants.testingMode) {
+  if (!tsConfigPathClean) {
     tsConfigPathClean = `${projectRootClean}/tsconfig.json`;
     if (!fs.existsSync(tsConfigPathClean)) {
       throw new Error(`A "tsconfig.json" is required at the root of the projet : ${tsConfigPathClean}`);
