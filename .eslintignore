@@ -1,0 +1,9 @@
+/test
+/temp
+/dist
+/node_modules
+/output
+/temp
+/test-*
+/log
+/generated

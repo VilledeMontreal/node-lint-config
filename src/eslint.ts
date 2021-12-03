@@ -1,21 +1,20 @@
-/* tslint:disable:no-console */
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { Action, ProjectType } from './models';
 import { execPromisified, getPackageRoot, getTempDirPath, libRoot } from './utils/utils';
 import { v4 as uuid } from 'uuid';
 
-let tslintRoot: string;
+let eslintRoot: string;
 let typescriptRoot: string;
 
 /**
- * Gets the "tslint" package root.
+ * Gets the "eslint" package root.
  */
-const getTslintRoot = () => {
-  if (!tslintRoot) {
-    tslintRoot = getPackageRoot('tslint');
+const getEslintRoot = () => {
+  if (!eslintRoot) {
+    eslintRoot = getPackageRoot('eslint');
   }
-  return tslintRoot;
+  return eslintRoot;
 };
 
 /**
@@ -61,7 +60,7 @@ const extendTsconfigWithRequiredOptions = (projectTsConfigPath: string): string 
 };
 
 /**
- * TSLint fix.
+ * ESLint fix.
  *
  * @param projectRoot the root of the project to fix.
  * @param projectType the type of project to fix.
@@ -69,12 +68,12 @@ const extendTsconfigWithRequiredOptions = (projectTsConfigPath: string): string 
  * the one of the fix to fix will be used or, if none exist, a default one will be
  * provided.
  */
-export const tslintFix = async (projectRoot: string, projectType: ProjectType, tsconfigFilePath: string = null) => {
-  await tslint(Action.FIX, projectRoot, projectType, tsconfigFilePath);
+export const eslintFix = async (projectRoot: string, projectType: ProjectType, tsconfigFilePath: string = null) => {
+  await eslint(Action.FIX, projectRoot, projectType, tsconfigFilePath);
 };
 
 /**
- * TSLint check.
+ * ESLint check.
  *
  * @param projectRoot the root of the project to check.
  * @param projectType the type of project to check.
@@ -82,11 +81,11 @@ export const tslintFix = async (projectRoot: string, projectType: ProjectType, t
  * the one of the project to check will be used or, if none exist, a default one will be
  * provided.
  */
-export const tslintCheck = async (projectRoot: string, projectType: ProjectType, tsconfigFilePath: string = null) => {
-  await tslint(Action.CHECK, projectRoot, projectType, tsconfigFilePath);
+export const eslintCheck = async (projectRoot: string, projectType: ProjectType, tsconfigFilePath: string = null) => {
+  await eslint(Action.CHECK, projectRoot, projectType, tsconfigFilePath);
 };
 
-export const tslint = async (
+export const eslint = async (
   action: Action,
   projectRoot: string,
   projectType: ProjectType,
@@ -119,27 +118,26 @@ export const tslint = async (
   try {
     process.chdir(projectRoot);
     // ==========================================
-    // TSLint
+    // ESLint
     // ==========================================
     try {
       const args: string[] = [
-        `${getTslintRoot()}/bin/tslint`,
+        `${getEslintRoot()}/bin/eslint`,
         `--config`,
-        `${libRoot}/rules/tslint-${projectType}.json`,
-        `--project`,
-        `${tsConfigPathClean}`
+        `${libRoot}/rules/eslint-${projectType}.json`,
+        `--ext`,
+        `.ts`,
+        `${projectRootClean}`,
       ];
-
       if (action === Action.FIX) {
         args.push('--fix');
       }
-
       await execPromisified(`node`, args);
     } catch (err) {
       if (action === Action.FIX) {
-        throw new Error(`TSLint fix failed!\n${err}`);
+        throw new Error(`ESLint fix failed!\n${err}`);
       } else {
-        throw new Error(`TSLint check failed!\n${err}`);
+        throw new Error(`ESLint check failed!\n${err}`);
       }
     }
 
@@ -151,23 +149,18 @@ export const tslint = async (
     fs.mkdirsSync(outDirPath);
 
     try {
-      await execPromisified(`node`, [
-        `${getTypescriptRoot()}/lib/tsc.js`,
-        `--project`,
-        `${tsConfigPathClean}`,
-        `--outDir`,
-        `${outDirPath}`
-      ]);
+      await execPromisified(`node`, [`${getTypescriptRoot()}/lib/tsc.js`, `--outDir`, `${outDirPath}`]);
     } catch (err) {
       if (action === Action.FIX) {
-        throw new Error(`TSLint fix failed!\n${err}`);
+        throw new Error(`ESLint fix failed!\n${err}`);
       } else {
-        throw new Error(`TSLint check failed!\n${err}`);
+        throw new Error(`ESLint check failed!\n${err}`);
       }
     } finally {
       try {
         fs.removeSync(outDirPath);
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.warn(`Unable to delete ${outDirPath}: ${err}`);
       }
     }
@@ -185,6 +178,7 @@ export const tslint = async (
       try {
         fs.removeSync(tempDirToDelete);
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.warn(`Unable to delete ${tempDirToDelete}: ${err}`);
       }
     }

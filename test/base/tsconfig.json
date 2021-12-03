@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig-required.json",
   "compilerOptions": {
     "target": "es2019",
     "lib": ["es2019", "es2020"],
@@ -9,5 +8,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "alwaysStrict": true
   },
-  "exclude": ["dist", "temp", "node_modules", "output", "log", "test-data", "generated", ".*"]
+  "include": ["../resources/lint/**/*.ts"]
 }

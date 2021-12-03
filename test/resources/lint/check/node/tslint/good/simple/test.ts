@@ -13,8 +13,8 @@ if (someConst === 123) {
 }
 
 // Shorthand properties don't need to be first!
-let obj = {
+const obj = {
   z: 'abc',
   test
 }
-obj = obj;
+console.log(obj);

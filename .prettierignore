@@ -16,7 +16,6 @@ Jenkinsfile
 package.json
 package-lock.json
 /node_modules
-/test
 /output
 /temp
 /test-*

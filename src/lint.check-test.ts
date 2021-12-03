@@ -1,7 +1,7 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 // Exceeding function length and console output are
 // OK in test files.
-// tslint:disable:no-console
-// tslint:disable:max-func-body-length
 import * as fs from 'fs';
 import * as path from 'path';
 import { Action, ProjectType, ValidationType } from './index';
@@ -16,7 +16,7 @@ const lintCheckSubDirectories = async (
   testsRootPath: string,
   mustSucceed: boolean
 ) => {
-  const testDirs = fs.readdirSync(testsRootPath).filter(f => fs.statSync(path.join(testsRootPath, f)).isDirectory());
+  const testDirs = fs.readdirSync(testsRootPath).filter((f) => fs.statSync(path.join(testsRootPath, f)).isDirectory());
   for (const testDirName of testDirs) {
     const testDir = `${testsRootPath}/${testDirName}`;
     const testName = `${projectType} - ${validationType} - ${mustSucceed ? 'must succeed' : 'must fail'} - ${testDir}`;
@@ -30,7 +30,7 @@ const lintCheckSubDirectories = async (
         testDir,
         Action.CHECK,
         projectType,
-        validationType
+        validationType,
       ]);
       if (!mustSucceed) {
         console.error(`\nscript was supposed to fail!\n`);
@@ -105,21 +105,21 @@ const lintCheckSubDirectories = async (
     );
 
     // ==========================================
-    // Check - Angular - TSLint - Must succeed
+    // Check - Angular - ESLint - Must succeed
     // ==========================================
     await lintCheckSubDirectories(
       ProjectType.ANGULAR,
-      ValidationType.TSLINT,
+      ValidationType.ESLINT,
       `${libRoot}/test/resources/lint/check/angular/tslint/good`,
       true
     );
 
     // ==========================================
-    // Check - Angular - TSLint - Must fail
+    // Check - Angular - ESLint - Must fail
     // ==========================================
     await lintCheckSubDirectories(
       ProjectType.ANGULAR,
-      ValidationType.TSLINT,
+      ValidationType.ESLINT,
       `${libRoot}/test/resources/lint/check/angular/tslint/bad`,
       false
     );
@@ -165,21 +165,21 @@ const lintCheckSubDirectories = async (
     );
 
     // ==========================================
-    // Check - Node - TSLint - Must succeed
+    // Check - Node - ESLint - Must succeed
     // ==========================================
     await lintCheckSubDirectories(
       ProjectType.NODE,
-      ValidationType.TSLINT,
+      ValidationType.ESLINT,
       `${libRoot}/test/resources/lint/check/node/tslint/good`,
       true
     );
 
     // ==========================================
-    // Check - Node - TSLint - Must fail
+    // Check - Node - ESLint - Must fail
     // ==========================================
     await lintCheckSubDirectories(
       ProjectType.NODE,
-      ValidationType.TSLINT,
+      ValidationType.ESLINT,
       `${libRoot}/test/resources/lint/check/node/tslint/bad`,
       false
     );
@@ -215,11 +215,11 @@ const lintCheckSubDirectories = async (
     );
 
     // ==========================================
-    // Check - Auto (unable to detect) - TSLint - Must fail
+    // Check - Auto (unable to detect) - ESLint - Must fail
     // ==========================================
     await lintCheckSubDirectories(
       ProjectType.AUTO,
-      ValidationType.TSLINT,
+      ValidationType.ESLINT,
       `${libRoot}/test/resources/lint/check/auto_unableToDetect`,
       false
     );
@@ -255,21 +255,21 @@ const lintCheckSubDirectories = async (
     );
 
     // ==========================================
-    // Check - Auto (Angular) - TSLint - Must succeed
+    // Check - Auto (Angular) - ESLint - Must succeed
     // ==========================================
     await lintCheckSubDirectories(
       ProjectType.AUTO,
-      ValidationType.TSLINT,
+      ValidationType.ESLINT,
       `${libRoot}/test/resources/lint/check/auto_angular/tslint/good`,
       true
     );
 
     // ==========================================
-    // Check - Auto (Angular) - TSLint - Must fail
+    // Check - Auto (Angular) - ESLint - Must fail
     // ==========================================
     await lintCheckSubDirectories(
       ProjectType.AUTO,
-      ValidationType.TSLINT,
+      ValidationType.ESLINT,
       `${libRoot}/test/resources/lint/check/auto_angular/tslint/bad`,
       false
     );
@@ -315,21 +315,21 @@ const lintCheckSubDirectories = async (
     );
 
     // ==========================================
-    // Check - Auto (Node) - TSLint - Must succeed
+    // Check - Auto (Node) - ESLint - Must succeed
     // ==========================================
     await lintCheckSubDirectories(
       ProjectType.AUTO,
-      ValidationType.TSLINT,
+      ValidationType.ESLINT,
       `${libRoot}/test/resources/lint/check/auto_node/tslint/good`,
       true
     );
 
     // ==========================================
-    // Check - Auto (Node) - TSLint - Must fail
+    // Check - Auto (Node) - ESLint - Must fail
     // ==========================================
     await lintCheckSubDirectories(
       ProjectType.AUTO,
-      ValidationType.TSLINT,
+      ValidationType.ESLINT,
       `${libRoot}/test/resources/lint/check/auto_node/tslint/bad`,
       false
     );
