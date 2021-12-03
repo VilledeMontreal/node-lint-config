@@ -1,6 +1,6 @@
 {
   "name": "@villedemontreal/lint-config",
-  "version": "2.0.0-beta",
+  "version": "2.0.0-beta-1",
   "description": "TSLint and Prettier config files for multiple project types",
   "repository": "https://github.com/villedemontreal/node-lint-config.git",
   "author": "Ville de Montréal",
@@ -17,20 +17,18 @@
     "villemontreal-lint": "./villemontreal-lint"
   },
   "scripts": {
-    "compile": "node run compile",
-    "build": "node run compile",
+    "compile": "tsc --build tsconfig.json",
     "test": "node run test",
     "test-units": "node run test-units",
     "lint": "node run lint",
     "lint-fix": "node run lint-fix",
     "eslint": "node run eslint",
     "eslint-fix": "node run eslint-fix",
+    "tslint": "node run tslint",
+    "tslint-fix": "node run tslint-fix",
     "prettier": "node run prettier",
     "prettier-fix": "node run prettier-fix",
-    "watch": "node run watch",
-    "prepublishOnly": "",
-    "lint-test": "eslint -c rules/eslint-node.json --ext .ts ./",
-    "prettier-test-fix": "prettier --config rules/prettier.config.js --ignore-path ./test/base/.prettierignore-tests --write ./test/resources/lint/check/auto_node/both/good/simple/*.ts"
+    "watch": "node run watch"
   },
   "dependencies": {
     "@types/app-root-path": "1.2.4",
@@ -51,7 +49,7 @@
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "fs-extra": "9.0.1",
-    "prettier": "2.4.1",
+    "prettier": "2.5.1",
     "rxjs": "6.5.5",
     "typescript": "3.9.5",
     "uuid": "8.1.0"

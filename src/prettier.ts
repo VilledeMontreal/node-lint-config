@@ -61,7 +61,7 @@ const prettier = async (action: Action, projectRoot: string, prettierIgnoreFileP
       `--config`,
       `${libRoot}/rules/prettier.config.js`,
       `--ignore-path`,
-      prettierIgnoreFilePathClean,
+      prettierIgnoreFilePathClean
     ];
 
     if (action === Action.FIX) {

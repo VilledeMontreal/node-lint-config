@@ -127,7 +127,7 @@ export const eslint = async (
         `${libRoot}/rules/eslint-${projectType}.json`,
         `--ext`,
         `.ts`,
-        `${projectRootClean}`,
+        `${projectRootClean}`
       ];
       if (action === Action.FIX) {
         args.push('--fix');

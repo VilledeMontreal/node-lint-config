@@ -22,7 +22,7 @@ const nothingToFixTest = async () => {
       testRoot,
       Action.FIX,
       ProjectType.NODE,
-      ValidationType.BOTH,
+      ValidationType.BOTH
     ]);
   } catch (err) {
     throw new Error(`\ntest failed!\n${err}\n`);
@@ -55,7 +55,7 @@ const fixPrettierAndTsLint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER,
+        ValidationType.PRETTIER
       ]);
     } catch (err) {
       error = true;
@@ -74,7 +74,7 @@ const fixPrettierAndTsLint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.ESLINT,
+        ValidationType.ESLINT
       ]);
     } catch (err) {
       error = true;
@@ -92,7 +92,7 @@ const fixPrettierAndTsLint = async () => {
         tempDir,
         Action.FIX,
         ProjectType.NODE,
-        ValidationType.BOTH,
+        ValidationType.BOTH
       ]);
     } catch (err) {
       throw new Error(`\ntest failed!\n${err}\n`);
@@ -107,7 +107,7 @@ const fixPrettierAndTsLint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER,
+        ValidationType.PRETTIER
       ]);
     } catch (err) {
       throw new Error(`Prettier check must have succeed after the fix!`);
@@ -123,7 +123,7 @@ const fixPrettierAndTsLint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.ESLINT,
+        ValidationType.ESLINT
       ]);
     } catch (err) {
       throw new Error(`ESLint check must have succeed after the fix!`);
@@ -158,7 +158,7 @@ const fixPrettier = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER,
+        ValidationType.PRETTIER
       ]);
     } catch (err) {
       error = true;
@@ -177,7 +177,7 @@ const fixPrettier = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.ESLINT,
+        ValidationType.ESLINT
       ]);
     } catch (err) {
       error = true;
@@ -195,7 +195,7 @@ const fixPrettier = async () => {
         tempDir,
         Action.FIX,
         ProjectType.NODE,
-        ValidationType.PRETTIER,
+        ValidationType.PRETTIER
       ]);
     } catch (err) {
       throw new Error(`\ntest failed!\n${err}\n`);
@@ -210,7 +210,7 @@ const fixPrettier = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER,
+        ValidationType.PRETTIER
       ]);
     } catch (err) {
       throw new Error(`Prettier check must have succeed after the fix!`);
@@ -226,7 +226,7 @@ const fixPrettier = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.ESLINT,
+        ValidationType.ESLINT
       ]);
     } catch (err) {
       error = true;
@@ -265,7 +265,7 @@ const fixTslint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER,
+        ValidationType.PRETTIER
       ]);
     } catch (err) {
       error = true;
@@ -286,7 +286,7 @@ const fixTslint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.ESLINT,
+        ValidationType.ESLINT
       ]);
     } catch (err) {
       error = true;
@@ -304,7 +304,7 @@ const fixTslint = async () => {
         tempDir,
         Action.FIX,
         ProjectType.NODE,
-        ValidationType.ESLINT,
+        ValidationType.ESLINT
       ]);
     } catch (err) {
       throw new Error(`\ntest failed!\n${err}\n`);
@@ -320,7 +320,7 @@ const fixTslint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.PRETTIER,
+        ValidationType.PRETTIER
       ]);
     } catch (err) {
       error = true;
@@ -338,7 +338,7 @@ const fixTslint = async () => {
         tempDir,
         Action.CHECK,
         ProjectType.NODE,
-        ValidationType.ESLINT,
+        ValidationType.ESLINT
       ]);
     } catch (err) {
       throw new Error(`ESLint check must have succeed after the fix!`);
