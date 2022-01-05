@@ -4,7 +4,7 @@
 export enum ProjectType {
   ANGULAR = 'angular',
   NODE = 'node',
-  AUTO = 'auto',
+  AUTO = 'auto'
 }
 
 /**
@@ -12,7 +12,7 @@ export enum ProjectType {
  */
 export enum Action {
   CHECK = 'check',
-  FIX = 'fix',
+  FIX = 'fix'
 }
 
 /**
@@ -21,7 +21,7 @@ export enum Action {
 export enum ValidationType {
   PRETTIER = 'prettier',
   ESLINT = 'eslint',
-  BOTH = 'both',
+  BOTH = 'both'
 }
 
 let allProjectTypes: string[];

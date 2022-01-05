@@ -9,7 +9,7 @@ import {
   getProjectTypeFromString,
   getValidationTypeFromString,
   ProjectType,
-  ValidationType,
+  ValidationType
 } from './models';
 import { prettierCheck, prettierFix } from './prettier';
 import { eslintCheck, eslintFix } from './eslint';

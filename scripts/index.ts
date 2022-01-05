@@ -7,3 +7,5 @@ export { TestScript } from './test';
 export { TestUnitsScript } from './testUnits';
 export { EsLintScript } from './esLint';
 export { EsLintFixScript } from './esLintFix';
+export { TsLintScript } from './tsLint';
+export { TsLintFixScript } from './tsLintFix';
