@@ -1,6 +1,6 @@
 {
   "name": "@villedemontreal/lint-config",
-  "version": "2.0.0-beta-1",
+  "version": "2.0.0-beta-2",
   "description": "TSLint and Prettier config files for multiple project types",
   "repository": "https://github.com/villedemontreal/node-lint-config.git",
   "author": "Ville de Montréal",
