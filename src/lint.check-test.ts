@@ -16,10 +16,14 @@ const lintCheckSubDirectories = async (
   testsRootPath: string,
   mustSucceed: boolean
 ) => {
-  const testDirs = fs.readdirSync(testsRootPath).filter(f => fs.statSync(path.join(testsRootPath, f)).isDirectory());
+  const testDirs = fs
+    .readdirSync(testsRootPath)
+    .filter(f => fs.statSync(path.join(testsRootPath, f)).isDirectory());
   for (const testDirName of testDirs) {
     const testDir = `${testsRootPath}/${testDirName}`;
-    const testName = `${projectType} - ${validationType} - ${mustSucceed ? 'must succeed' : 'must fail'} - ${testDir}`;
+    const testName = `${projectType} - ${validationType} - ${
+      mustSucceed ? 'must succeed' : 'must fail'
+    } - ${testDir}`;
 
     console.log(`\n------------------------------------------`);
     console.log(testName);

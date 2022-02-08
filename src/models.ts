@@ -47,7 +47,9 @@ export const isValidProjectType = (projectTypeStr: string): boolean => {
 /**
  * @returns the ProjectType or NULL if invalid.
  */
-export const getProjectTypeFromString = (projectTypeStr: string): ProjectType => {
+export const getProjectTypeFromString = (
+  projectTypeStr: string
+): ProjectType => {
   if (!isValidProjectType(projectTypeStr)) {
     return null;
   }
@@ -99,7 +101,9 @@ export const isValidValidationType = (validationTypeStr: string): boolean => {
 /**
  * @returns the ValidationType or NULL if invalid.
  */
-export const getValidationTypeFromString = (validationTypeStr: string): ValidationType => {
+export const getValidationTypeFromString = (
+  validationTypeStr: string
+): ValidationType => {
   if (!isValidValidationType(validationTypeStr)) {
     return null;
   }

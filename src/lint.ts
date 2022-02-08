@@ -46,13 +46,21 @@ const getProjetRoot = (args: string[]): string => {
   let projectRoot: string;
   if (args[0]) {
     const actionParam: string = args[0].toLowerCase();
-    if (actionParam === '-help' || actionParam === '--help' || actionParam === '-h' || actionParam === '--h') {
+    if (
+      actionParam === '-help' ||
+      actionParam === '--help' ||
+      actionParam === '-h' ||
+      actionParam === '--h'
+    ) {
       help();
       return null;
     }
 
     projectRoot = path.resolve(args[0]);
-    if (!fs.existsSync(projectRoot) || !fs.lstatSync(projectRoot).isDirectory()) {
+    if (
+      !fs.existsSync(projectRoot) ||
+      !fs.lstatSync(projectRoot).isDirectory()
+    ) {
       help(`The specified project root is not a valid directory: ${args[0]}`);
       return null;
     }
@@ -62,7 +70,9 @@ const getProjetRoot = (args: string[]): string => {
     }
   } else {
     projectRoot = path.resolve('.');
-    console.log(`No project root specified. Using current directory : ${projectRoot}`);
+    console.log(
+      `No project root specified. Using current directory : ${projectRoot}`
+    );
   }
   return projectRoot;
 };
@@ -133,7 +143,10 @@ const getValidationType = (args: string[]): ValidationType => {
     // ==========================================
     // Prettier
     // ==========================================
-    if (validationType === ValidationType.PRETTIER || validationType === ValidationType.BOTH) {
+    if (
+      validationType === ValidationType.PRETTIER ||
+      validationType === ValidationType.BOTH
+    ) {
       if (action === Action.FIX) {
         console.log(`Prettier fix, project root : ${projectRoot}`);
         await prettierFix(projectRoot);
@@ -150,7 +163,10 @@ const getValidationType = (args: string[]): ValidationType => {
     // ==========================================
     // ESLint
     // ==========================================
-    if (validationType === ValidationType.ESLINT || validationType === ValidationType.BOTH) {
+    if (
+      validationType === ValidationType.ESLINT ||
+      validationType === ValidationType.BOTH
+    ) {
       if (action === Action.FIX) {
         console.log(`ESLint fix, project root : ${projectRoot}`);
         await eslintFix(projectRoot, projectType);

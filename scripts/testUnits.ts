@@ -11,8 +11,12 @@ export class TestUnitsScript extends ScriptBase {
   }
 
   protected async main() {
-    await this.invokeShellCommand(`node`, [`${libRoot}/dist/src/lint.check-test.js`]);
-    await this.invokeShellCommand(`node`, [`${libRoot}/dist/src/lint.fix-test.js`]);
+    await this.invokeShellCommand(`node`, [
+      `${libRoot}/dist/src/lint.check-test.js`
+    ]);
+    await this.invokeShellCommand(`node`, [
+      `${libRoot}/dist/src/lint.fix-test.js`
+    ]);
     await this.invokeShellCommand(`node`, [
       `${libRoot}/node_modules/eslint/bin/eslint`,
       `--config`,

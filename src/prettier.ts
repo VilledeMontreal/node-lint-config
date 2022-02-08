@@ -19,7 +19,10 @@ const generatePrettierTargetString = (projectRoot: string): string => {
  * the one of the project to fix will be used or, if none exist, a default one will be
  * provided.
  */
-export const prettierFix = async (projectRoot: string, prettierIgnoreFilePath: string = null) => {
+export const prettierFix = async (
+  projectRoot: string,
+  prettierIgnoreFilePath: string = null
+) => {
   await prettier(Action.FIX, projectRoot, prettierIgnoreFilePath);
 };
 
@@ -31,11 +34,18 @@ export const prettierFix = async (projectRoot: string, prettierIgnoreFilePath: s
  * the one of the project to check will be used or, if none exist, a default one will be
  * provided.
  */
-export const prettierCheck = async (projectRoot: string, prettierIgnoreFilePath: string = null) => {
+export const prettierCheck = async (
+  projectRoot: string,
+  prettierIgnoreFilePath: string = null
+) => {
   await prettier(Action.CHECK, projectRoot, prettierIgnoreFilePath);
 };
 
-const prettier = async (action: Action, projectRoot: string, prettierIgnoreFilePath: string = null) => {
+const prettier = async (
+  action: Action,
+  projectRoot: string,
+  prettierIgnoreFilePath: string = null
+) => {
   const projectRootClean = path.resolve(projectRoot);
 
   let prettierIgnoreFilePathClean = prettierIgnoreFilePath;
@@ -73,10 +83,15 @@ const prettier = async (action: Action, projectRoot: string, prettierIgnoreFileP
     args.push(generatePrettierTargetString(projectRootClean));
 
     const extension = /^win/.test(process.platform) ? '.cmd' : '';
-    await execPromisified(`${appRoot}/node_modules/.bin/prettier${extension}`, args);
+    await execPromisified(
+      `${appRoot}/node_modules/.bin/prettier${extension}`,
+      args
+    );
   } catch (err) {
     if (action === Action.CHECK) {
-      throw new Error(`Prettier check failed! (problematic files printed above ↑↑↑)\n${err}`);
+      throw new Error(
+        `Prettier check failed! (problematic files printed above ↑↑↑)\n${err}`
+      );
     } else {
       throw new Error(`Prettier fix failed!\n${err}`);
     }

@@ -1,7 +1,12 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { Action, ProjectType } from './models';
-import { execPromisified, getPackageRoot, getTempDirPath, libRoot } from './utils/utils';
+import {
+  execPromisified,
+  getPackageRoot,
+  getTempDirPath,
+  libRoot
+} from './utils/utils';
 import { v4 as uuid } from 'uuid';
 
 let eslintRoot: string;
@@ -35,18 +40,25 @@ const getTypescriptRoot = () => {
  * file to use is located. It is the responsability of the calling
  * code to delete this temp directory when it's done with it!
  */
-const extendTsconfigWithRequiredOptions = (projectTsConfigPath: string): string => {
+const extendTsconfigWithRequiredOptions = (
+  projectTsConfigPath: string
+): string => {
   const projectTsConfig = fs.readFileSync(projectTsConfigPath, `utf8`);
   const projectTsConfigObj = JSON.parse(projectTsConfig);
 
   const projectTsConfigPathClean = projectTsConfigPath.replace(/\\/g, '/');
 
-  const requiredTsConfig = fs.readFileSync(`${libRoot}/rules/tsconfig-required.json`, `utf8`);
+  const requiredTsConfig = fs.readFileSync(
+    `${libRoot}/rules/tsconfig-required.json`,
+    `utf8`
+  );
   const requiredTsConfigObj = JSON.parse(requiredTsConfig);
   requiredTsConfigObj.extends = projectTsConfigPathClean;
 
   if (!('include' in projectTsConfigObj) && !('files' in projectTsConfigObj)) {
-    const projectPath = path.resolve(`${projectTsConfigPathClean}/..`).replace(/\\/g, '/');
+    const projectPath = path
+      .resolve(`${projectTsConfigPathClean}/..`)
+      .replace(/\\/g, '/');
     requiredTsConfigObj.include = [`${projectPath}/**/*.ts`];
   }
 
@@ -54,7 +66,11 @@ const extendTsconfigWithRequiredOptions = (projectTsConfigPath: string): string 
   fs.mkdirsSync(tempTsconfigDirPath);
 
   const tempTsconfigPath = `${tempTsconfigDirPath}/tsconfig.json`;
-  fs.writeFileSync(tempTsconfigPath, JSON.stringify(requiredTsConfigObj, null, 2), `utf8`);
+  fs.writeFileSync(
+    tempTsconfigPath,
+    JSON.stringify(requiredTsConfigObj, null, 2),
+    `utf8`
+  );
 
   return tempTsconfigDirPath;
 };
@@ -68,7 +84,11 @@ const extendTsconfigWithRequiredOptions = (projectTsConfigPath: string): string 
  * the one of the fix to fix will be used or, if none exist, a default one will be
  * provided.
  */
-export const tslintFix = async (projectRoot: string, projectType: ProjectType, tsconfigFilePath: string = null) => {
+export const tslintFix = async (
+  projectRoot: string,
+  projectType: ProjectType,
+  tsconfigFilePath: string = null
+) => {
   await eslint(Action.FIX, projectRoot, projectType, tsconfigFilePath);
 };
 
@@ -81,7 +101,11 @@ export const tslintFix = async (projectRoot: string, projectType: ProjectType, t
  * the one of the project to check will be used or, if none exist, a default one will be
  * provided.
  */
-export const tslintCheck = async (projectRoot: string, projectType: ProjectType, tsconfigFilePath: string = null) => {
+export const tslintCheck = async (
+  projectRoot: string,
+  projectType: ProjectType,
+  tsconfigFilePath: string = null
+) => {
   await eslint(Action.CHECK, projectRoot, projectType, tsconfigFilePath);
 };
 
@@ -102,14 +126,17 @@ export const eslint = async (
   if (!tsConfigPathClean) {
     tsConfigPathClean = `${projectRootClean}/tsconfig.json`;
     if (!fs.existsSync(tsConfigPathClean)) {
-      throw new Error(`A "tsconfig.json" is required at the root of the projet : ${tsConfigPathClean}`);
+      throw new Error(
+        `A "tsconfig.json" is required at the root of the projet : ${tsConfigPathClean}`
+      );
     }
 
     // ==========================================
     // We make sure the required compiler options
     // are there.
     // ==========================================
-    const tempDirWithTsConfig = extendTsconfigWithRequiredOptions(tsConfigPathClean);
+    const tempDirWithTsConfig =
+      extendTsconfigWithRequiredOptions(tsConfigPathClean);
     tsConfigPathClean = `${tempDirWithTsConfig}/tsconfig.json`;
     tempDirToDelete = tempDirWithTsConfig;
   }
@@ -149,7 +176,11 @@ export const eslint = async (
     fs.mkdirsSync(outDirPath);
 
     try {
-      await execPromisified(`node`, [`${getTypescriptRoot()}/lib/tsc.js`, `--outDir`, `${outDirPath}`]);
+      await execPromisified(`node`, [
+        `${getTypescriptRoot()}/lib/tsc.js`,
+        `--outDir`,
+        `${outDirPath}`
+      ]);
     } catch (err) {
       if (action === Action.FIX) {
         throw new Error(`ESLint fix failed!\n${err}`);

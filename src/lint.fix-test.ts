@@ -80,7 +80,7 @@ const fixPrettierAndTsLint = async () => {
       error = true;
     }
     if (!error) {
-      throw new Error(`Prettier check must have failed!`);
+      throw new Error(`ESLint check must have failed!`);
     }
     console.log(`
     ==========================================
@@ -292,7 +292,7 @@ const fixTslint = async () => {
       error = true;
     }
     if (!error) {
-      throw new Error(`Prettier check must have failed!`);
+      throw new Error(`ESLint check must have failed!`);
     }
     console.log(`
     ==========================================

@@ -12,7 +12,9 @@ let tempDirPath: string = null;
 // the lib itself, the current file is inside
 // "dist"
 // ==========================================
-export const libRoot = path.normalize(isLintLibItself() ? `${__dirname}/../../..` : `${__dirname}/../..`);
+export const libRoot = path.normalize(
+  isLintLibItself() ? `${__dirname}/../../..` : `${__dirname}/../..`
+);
 
 /**
  * Returns the path to a temp directory.
@@ -40,7 +42,10 @@ export const getPackageRoot = (packageName: string): string => {
   let packagePath = path.dirname(require.resolve(packageName));
 
   let latest: string = null;
-  while (!fs.existsSync(`${packagePath}/package.json`) && packagePath !== latest) {
+  while (
+    !fs.existsSync(`${packagePath}/package.json`) &&
+    packagePath !== latest
+  ) {
     latest = packagePath;
     packagePath = path.resolve(packagePath, '..');
   }
@@ -54,16 +59,25 @@ export const getPackageRoot = (packageName: string): string => {
 /**
  * Executes a shell command. Returns a Promise.
  */
-export const execPromisified = (command: string, args: string[]): Promise<void> => {
+export const execPromisified = (
+  command: string,
+  args: string[]
+): Promise<void> => {
   return new Promise<void>((resolve, reject) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const proc = execFile(command, args, { maxBuffer: 1024 * 500 }, (err: any, out: any, code: any) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    const proc = execFile(
+      command,
+      args,
+      { maxBuffer: 1024 * 500 },
+      (err: any, out: any, code: any) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
       }
-    });
+    );
+    /* eslint-enable @typescript-eslint/no-unused-vars */
 
     proc.stdout.on('data', (data: string) => {
       let dataClean = data;
