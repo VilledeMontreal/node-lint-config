@@ -1,3 +1,7 @@
+# Archivé!! Ce dépôt de code est maintenant archivé, c'est-à-dire qu'il n'est plus activement maintenu. Tout projet utilisant cette librairie comme base de configuration de 'lintage' devrait passer à ESLint
+
+---
+
 # Lint Config - Ville de Montréal
 
 > A [TSLint config](https://palantir.github.io/tslint/usage/tslint-json/) based on [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) that is compatible with [Prettier](https://prettier.io).
